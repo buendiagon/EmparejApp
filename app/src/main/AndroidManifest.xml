@@ -21,7 +21,8 @@
         <activity android:name=".Pantallas.Nivel" />
         <activity android:name=".Pantallas.Puntajes" />
         <activity android:name=".Pantallas.Configuracion" />
-        <activity android:name=".Pantallas.Resultados"></activity>
+        <activity android:name=".Pantallas.Resultados" />
+        <activity android:name=".Pantallas.Juego"></activity>
     </application>
 
 </manifest>
