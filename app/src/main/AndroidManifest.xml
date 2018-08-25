@@ -9,18 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashScreen">
-        </activity>
-        <activity android:name=".Pantallas.Names" />
-        <activity android:name=".Pantallas.Opciones" />
-        <activity android:name=".Pantallas.Nivel" >
-
+        <activity android:name=".splashscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Pantallas.Names" />
+        <activity android:name=".Pantallas.Opciones" />
+        <activity android:name=".Pantallas.Nivel" />
+
+
+
         <activity android:name=".Pantallas.Puntajes" />
         <activity android:name=".Pantallas.Configuracion" />
         <activity android:name=".Pantallas.Resultados" />
