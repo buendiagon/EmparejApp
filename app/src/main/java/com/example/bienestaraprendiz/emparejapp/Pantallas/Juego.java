@@ -44,7 +44,11 @@ public class Juego extends AppCompatActivity {
         puntaje1=findViewById(R.id.puntaje1);
         puntaje2=findViewById(R.id.puntaje2);
         tiempo=findViewById(R.id.tempo);
-        //asignar nombre y puntaje del intent
+        //obtener nombre del intent y cambiarlo setText
+
+
+        puntaje1.setText("0");
+        puntaje2.setText("0");
 
 
         //Array de identificacion de las imagenes
@@ -145,10 +149,20 @@ public class Juego extends AppCompatActivity {
                     if(si==1){
                         findViewById(view.getId()).setVisibility(view.INVISIBLE);
                         findViewById(imagenAnterior).setVisibility(view.INVISIBLE);
+                        if(nomRan==1){
+                            puntaje1.setText(String.valueOf(Integer.valueOf(puntaje1.getText().toString())+100));
+                        }
+                        else puntaje2.setText(String.valueOf(Integer.valueOf(puntaje2.getText().toString())+100));
                     }
                     else {
-                        if(nomRan==1)nomRan=2;
-                        else if(nomRan==2) nomRan=1;
+                        if(nomRan==1){
+                            nomRan=2;
+                            puntaje1.setText(String.valueOf(Integer.valueOf(puntaje1.getText().toString())-2));
+                        }
+                        else if(nomRan==2){
+                            nomRan=1;
+                            puntaje2.setText(String.valueOf(Integer.valueOf(puntaje2.getText().toString())-2));
+                        }
                         nombres();
                     }
                     anterior=0;
@@ -158,7 +172,12 @@ public class Juego extends AppCompatActivity {
                     }
                     if(parejas==aleatorio/2){
                         Intent intent=new Intent(Juego.this,Resultados.class);
+                        intent.putExtra("player1",player1.getText().toString());
+                        intent.putExtra("player2",player2.getText().toString());
+                        intent.putExtra("puntaje1",puntaje1.getText().toString());
+                        intent.putExtra("puntaje2",puntaje2.getText().toString());
 
+                        //nombres y puntajes
 
                         startActivity(intent);
                     }
