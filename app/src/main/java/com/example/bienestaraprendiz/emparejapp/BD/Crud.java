@@ -56,6 +56,7 @@ public class Crud extends SQLiteOpenHelper {
         while (cursor.moveToNext()){
             lista.add(new PuntajesVo(cursor.getString(1),cursor.getString(2)));
         }
+        cursor.close();
 
     }
 }
