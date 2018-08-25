@@ -22,7 +22,7 @@ public class Crud extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table tb_puntaje(id integer primary key autoincrement,nombre text,puntaje integer,tiempo text)");
-        db.execSQL("create table tb_tiempo(id integer primary key autoincrement,tiempo text,siTiempo integer)");
+        db.execSQL("create table tb_tiempo(id integer primary key autoincrement,minutos text,segundos text,siTiempo integer)");
         ContentValues registro =new ContentValues();
         registro.put("nombre","nadie");
         registro.put("puntaje","0");
@@ -30,7 +30,8 @@ public class Crud extends SQLiteOpenHelper {
             db.insert("tb_puntaje",null,registro);
         }
         ContentValues registro1=new ContentValues();
-        registro1.put("tiempo","0");
+        registro1.put("minutos","0");
+        registro1.put("segundos","0");
         registro1.put("siTiempo","0");
         db.insert("tb_tiempo",null,registro1);
     }
@@ -40,7 +41,7 @@ public class Crud extends SQLiteOpenHelper {
         db.execSQL("drop table if exists tb_puntaje");
         db.execSQL("drop table if exists tb_tiempo");
         db.execSQL("create table tb_puntaje(id integer primary key autoincrement,nombre text,puntaje integer,tiempo text)");
-        db.execSQL("create table tb_tiempo(id integer primary key autoincrement,tiempo text,siTiempo integer)");
+        db.execSQL("create table tb_tiempo(id integer primary key autoincrement,minutos text,segundos text,siTiempo integer)");
     }
     public void iniciarBD(Context context){
         Crud crud=new Crud(context,"puntaje", null, 1);

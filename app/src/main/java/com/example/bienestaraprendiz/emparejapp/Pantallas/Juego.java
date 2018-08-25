@@ -172,10 +172,11 @@ public class Juego extends AppCompatActivity {
                     }
                     if(parejas==aleatorio/2){
                         Intent intent=new Intent(Juego.this,Resultados.class);
-                        intent.putExtra("player1",player1.getText().toString());
+                        intent.putExtra("player1","hola");
                         intent.putExtra("player2",player2.getText().toString());
                         intent.putExtra("puntaje1",puntaje1.getText().toString());
                         intent.putExtra("puntaje2",puntaje2.getText().toString());
+                        intent.putExtra("nivel",nivel);
 
                         //nombres y puntajes
 
