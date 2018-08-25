@@ -64,8 +64,8 @@ public class Resultados extends AppCompatActivity {
                 for(int j=i;j<4;j++){
                     registro1.put("nombre",lista.get(j+((nivel-1)*5)).getNombre());
                     registro1.put("puntaje",lista.get(j+((nivel-1)*5)).getPuntaje());
-                    crud.modificar(this,"tb_puntaje",registro1,String.valueOf(i+((nivel-1)*5)+2));
-                    Log.d("verificar",lista.get(j+((nivel-1)*5)).getNombre());
+                    crud.modificar(this,"tb_puntaje",registro1,String.valueOf(j+((nivel-1)*5)+2));
+                    Log.d("verificar",lista.get(j+((nivel-1)*5)).getPuntaje()+"              "+String.valueOf(j+((nivel-1)*5)+2));
                 }
 
                 registro.put("nombre",player3);
