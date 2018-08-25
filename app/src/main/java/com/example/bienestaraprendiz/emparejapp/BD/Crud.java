@@ -3,13 +3,10 @@ package com.example.bienestaraprendiz.emparejapp.BD;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.bienestaraprendiz.emparejapp.Entidades.PuntajesVo;
-
-import org.apache.http.conn.ConnectTimeoutException;
 
 import java.util.ArrayList;
 

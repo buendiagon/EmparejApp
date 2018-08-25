@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -57,15 +58,16 @@ public class Configuracion extends AppCompatActivity {
         });
 
         final ContentValues comoloquierallamar= new ContentValues();
-        comoloquierallamar.put("minutos",minutos.getText().toString());
-        comoloquierallamar.put("segundos",segundos.getText().toString());
-        comoloquierallamar.put("sitiempo",String.valueOf(sitiempo));
-
 
         aplicar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                comoloquierallamar.put("minutos",minutos.getText().toString());
+                comoloquierallamar.put("segundos",segundos.getText().toString());
+                comoloquierallamar.put("sitiempo",String.valueOf(sitiempo));
+                Log.d("verificar",minutos.getText().toString()+"          "+segundos.getText().toString()+"            "+String.valueOf(sitiempo));
                 crud.modificar(Configuracion.this,"tb_tiempo",comoloquierallamar,"1");
+                finish();
             }
         });
     }

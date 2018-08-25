@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.bienestaraprendiz.emparejapp.BD.Crud;
+import com.example.bienestaraprendiz.emparejapp.Entidades.PuntajesVo;
 import com.example.bienestaraprendiz.emparejapp.R;
 
 import java.util.ArrayList;
@@ -21,11 +23,14 @@ public class Juego extends AppCompatActivity {
     ArrayList<ImageView> Ids;
     ArrayList<Integer> images;
     ArrayList<Integer> acomodar;
+    ArrayList<PuntajesVo> lista;
     int nivel,ran=-1,aleatorio=0,click=0,anterior=0,anterior1=0,nomRan=-1,parejas=0;
     String jugador1,jugador2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Crud crud=new Crud(this,"puntaje",null,1);
+        crud.consultar(this,"tb_tiempo",lista);
         nivel=getIntent().getIntExtra("nivel",0);
         Ids=new ArrayList<>();
         images=new ArrayList<>();
@@ -50,6 +55,11 @@ public class Juego extends AppCompatActivity {
         tiempo=findViewById(R.id.tempo);
         player1.setText(jugador1);
         player2.setText(jugador2);
+        if(nivel<4){
+            tiempo.setVisibility(View.INVISIBLE);
+        }else {
+            lista.get(0).getNombre();
+        }
 
 
         puntaje1.setText("0");
