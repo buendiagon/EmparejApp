@@ -31,7 +31,7 @@ public class Names extends AppCompatActivity {
     }
 
     private void niveles() {
-        if (jugadoruno.getText().toString().equals("") || jugadordos.getText().toString().equals("")){
+        if (jugadoruno.getText().toString().trim().equals("") || jugadordos.getText().toString().trim().equals("")){
             Toast.makeText(getApplicationContext(),"Por favor ingrese un nombre",Toast.LENGTH_SHORT).show();
         }else if (jugadoruno.getText().toString().equals(jugadordos.getText().toString())){
             Toast.makeText(getApplicationContext(),"Los nombres no pueden ser iguales",Toast.LENGTH_SHORT).show();

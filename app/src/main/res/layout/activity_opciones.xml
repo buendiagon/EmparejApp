@@ -8,31 +8,48 @@
     android:orientation="vertical"
     tools:context=".Pantallas.Opciones">
 
-    <ImageView
-        android:id="@+id/imageView4"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="40px"
-        app:srcCompat="@drawable/logo" />
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/jugar"
-        android:layout_width="290dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="30px"
-        android:text="Jugar" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/puntajes"
-        android:layout_width="290dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="30px"
-        android:text="Puntajes" />
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="40px"
+                app:srcCompat="@drawable/logo" />
 
-    <Button
-        android:id="@+id/configurar"
-        android:layout_width="290dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="30px"
-        android:text="configuracion" />
+            <Button
+                android:id="@+id/jugar"
+                android:layout_width="290dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="30px"
+                android:text="Jugar" />
+
+            <Button
+                android:id="@+id/puntajes"
+                android:layout_width="290dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="30px"
+                android:text="Puntajes" />
+
+            <Button
+                android:id="@+id/configurar"
+                android:layout_width="290dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="30px"
+                android:text="configuracion" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
 </LinearLayout>

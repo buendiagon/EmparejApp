@@ -7,71 +7,74 @@
     android:orientation="vertical"
     tools:context=".Pantallas.Names">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imageView3"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/logo" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20px"
-            android:gravity="center"
-            android:text="Nombres"
-            android:textColor="@android:color/black"
-            android:textSize="30sp"
-            app:fontFamily="casual" />
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/logo" />
 
-        <EditText
-            android:id="@+id/jugadoruno"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20px"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="Jugador uno"
-            android:inputType="text" />
+            </LinearLayout>
 
-        <EditText
-            android:id="@+id/jugadordos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20px"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="Jugador dos"
-            android:inputType="text" />
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="227dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical">
+                <EditText
+                    android:id="@+id/jugadoruno"
+                    android:layout_width="290dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20px"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="Jugador uno"
+                    android:inputType="text" />
 
-        <Button
-            android:id="@+id/ingresar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="30px"
-            android:background="#8FA4EF"
-            android:text="Ingresar" />
-    </LinearLayout>
+                <EditText
+                    android:id="@+id/jugadordos"
+                    android:layout_width="290dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20px"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="Jugador dos"
+                    android:inputType="text" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/ingresar"
+                    android:layout_width="290dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="30px"
+                    android:background="#8FA4EF"
+                    android:text="Ingresar" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
