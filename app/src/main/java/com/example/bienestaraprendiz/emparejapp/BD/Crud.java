@@ -14,23 +14,25 @@ import org.apache.http.conn.ConnectTimeoutException;
 import java.util.ArrayList;
 
 public class Crud extends SQLiteOpenHelper {
-    public Crud(Context context, String name,SQLiteDatabase.OpenParams openParams,int version) {
-        super(context, name, version, openParams);
+
+    public Crud(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+        super(context, name, factory, version);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table tb_puntaje(id integer primary key autoincrement,nombre text,puntaje integer,tiempo text)");
-        db.execSQL("create table tb_tiempo(id primary key autoincrement,tiempo text,siTiempo int)");
+        db.execSQL("create table tb_tiempo(id integer primary key autoincrement,tiempo text,siTiempo integer)");
         ContentValues registro =new ContentValues();
         registro.put("nombre","nadie");
         registro.put("puntaje","0");
-        for (int i=0;i<29;i++){
+        for (int i=0;i<30;i++){
             db.insert("tb_puntaje",null,registro);
         }
         ContentValues registro1=new ContentValues();
         registro1.put("tiempo","0");
         registro1.put("siTiempo","0");
+        db.insert("tb_tiempo",null,registro1);
     }
 
     @Override
@@ -38,7 +40,7 @@ public class Crud extends SQLiteOpenHelper {
         db.execSQL("drop table if exists tb_puntaje");
         db.execSQL("drop table if exists tb_tiempo");
         db.execSQL("create table tb_puntaje(id integer primary key autoincrement,nombre text,puntaje integer,tiempo text)");
-        db.execSQL("create table tb_tiempo(id primary key autoincrement,tiempo text,siTiempo int)");
+        db.execSQL("create table tb_tiempo(id integer primary key autoincrement,tiempo text,siTiempo integer)");
     }
     public void iniciarBD(Context context){
         Crud crud=new Crud(context,"puntaje", null, 1);

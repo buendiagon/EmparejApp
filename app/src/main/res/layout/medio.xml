@@ -85,6 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="Voltear"
             app:srcCompat="@drawable/imagen" />
 
         <ImageView
@@ -92,6 +93,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="Voltear"
             app:srcCompat="@drawable/imagen" />
 
         <ImageView
@@ -99,6 +101,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="Voltear"
             app:srcCompat="@drawable/imagen" />
 
         <ImageView
@@ -106,6 +109,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="Voltear"
             app:srcCompat="@drawable/imagen" />
     </LinearLayout>
 
@@ -120,6 +124,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="Voltear"
             app:srcCompat="@drawable/imagen" />
 
         <ImageView
@@ -127,6 +132,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="Voltear"
             app:srcCompat="@drawable/imagen" />
 
         <ImageView
@@ -134,6 +140,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="Voltear"
             app:srcCompat="@drawable/imagen" />
 
         <ImageView
@@ -141,6 +148,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="Voltear"
             app:srcCompat="@drawable/imagen" />
     </LinearLayout>
 
@@ -155,6 +163,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="Voltear"
             app:srcCompat="@drawable/imagen" />
 
         <ImageView
@@ -162,6 +171,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="Voltear"
             app:srcCompat="@drawable/imagen" />
 
         <ImageView
@@ -169,6 +179,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="Voltear"
             app:srcCompat="@drawable/imagen" />
 
         <ImageView
@@ -176,6 +187,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="Voltear"
             app:srcCompat="@drawable/imagen" />
     </LinearLayout>
 </LinearLayout>
