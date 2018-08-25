@@ -12,7 +12,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.bienestaraprendiz.emparejapp.BD.Crud;
+import com.example.bienestaraprendiz.emparejapp.Entidades.PuntajesVo;
 import com.example.bienestaraprendiz.emparejapp.R;
+
+import java.util.ArrayList;
 
 public class Configuracion extends AppCompatActivity {
 
@@ -34,6 +37,8 @@ public class Configuracion extends AppCompatActivity {
         aplicar = findViewById(R.id.aplicar);
         final Crud crud = new Crud(this,"puntaje",null,1);
 
+        consultar();
+
         temporizador.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -48,7 +53,6 @@ public class Configuracion extends AppCompatActivity {
                     minutos.setVisibility(View.INVISIBLE);
                     segundos.setVisibility(View.INVISIBLE);
                     reloj.setVisibility(View.INVISIBLE);
-//                    aplicar.setVisibility(View.INVISIBLE);
                     getWindow().getDecorView().setBackgroundColor(Color.WHITE);
                     sitiempo = 0;
 
@@ -57,16 +61,25 @@ public class Configuracion extends AppCompatActivity {
         });
 
         final ContentValues comoloquierallamar= new ContentValues();
-        comoloquierallamar.put("minutos",minutos.getText().toString());
-        comoloquierallamar.put("segundos",segundos.getText().toString());
-        comoloquierallamar.put("sitiempo",String.valueOf(sitiempo));
-
 
         aplicar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                comoloquierallamar.put("minutos",minutos.getText().toString());
+                comoloquierallamar.put("segundos",segundos.getText().toString());
+                comoloquierallamar.put("sitiempo",String.valueOf(sitiempo));
                 crud.modificar(Configuracion.this,"tb_tiempo",comoloquierallamar,"1");
             }
         });
+    }
+
+    private void consultar() {
+        ArrayList<PuntajesVo> traer = new ArrayList<>();
+        Crud consultar = new Crud(this,"puntaje",null,1);
+        consultar.consultar(this,"tb_tiempo",traer);
+        traer.get(0).getNombre();
+        traer.get(0).getPuntaje();
+        traer.get(0).get
+
     }
 }
