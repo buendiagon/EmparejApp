@@ -1,9 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="top|center_horizontal"
+    android:orientation="vertical"
     tools:context=".Pantallas.Opciones">
 
-</android.support.constraint.ConstraintLayout>
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="40px"
+        app:srcCompat="@drawable/logo" />
+
+    <Button
+        android:id="@+id/jugar"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="30px"
+        android:text="Jugar" />
+
+    <Button
+        android:id="@+id/puntajes"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="30px"
+        android:text="Puntajes" />
+
+    <Button
+        android:id="@+id/configurar"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="30px"
+        android:text="configuracion" />
+</LinearLayout>

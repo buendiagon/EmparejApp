@@ -24,10 +24,40 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="20px"
             android:gravity="center"
             android:text="Nombres"
-            android:textSize="24sp"
-            app:fontFamily="sans-serif" />
+            android:textColor="@android:color/black"
+            android:textSize="30sp"
+            app:fontFamily="casual" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/jugadoruno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20px"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Jugador uno"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/jugadordos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20px"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Jugador dos"
+            android:inputType="text" />
     </LinearLayout>
 
     <LinearLayout
@@ -36,11 +66,12 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
+        <Button
+            android:id="@+id/ingresar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30px"
+            android:background="#8FA4EF"
+            android:text="Ingresar" />
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical"></LinearLayout>
 </LinearLayout>
