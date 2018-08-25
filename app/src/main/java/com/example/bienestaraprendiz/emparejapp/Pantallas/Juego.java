@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,6 +22,7 @@ public class Juego extends AppCompatActivity {
     ArrayList<Integer> images;
     ArrayList<Integer> acomodar;
     int nivel,ran=-1,aleatorio=0,click=0,anterior=0,anterior1=0,nomRan=-1,parejas=0;
+    String jugador1,jugador2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +30,8 @@ public class Juego extends AppCompatActivity {
         Ids=new ArrayList<>();
         images=new ArrayList<>();
         acomodar=new ArrayList<>();
+        jugador1=getIntent().getStringExtra("player1");
+        jugador2=getIntent().getStringExtra("player2");
         if(nivel==1 || nivel==4) {
             setContentView(R.layout.activity_juego);
         }
@@ -44,7 +48,8 @@ public class Juego extends AppCompatActivity {
         puntaje1=findViewById(R.id.puntaje1);
         puntaje2=findViewById(R.id.puntaje2);
         tiempo=findViewById(R.id.tempo);
-        //obtener nombre del intent y cambiarlo setText
+        player1.setText(jugador1);
+        player2.setText(jugador2);
 
 
         puntaje1.setText("0");
@@ -172,15 +177,16 @@ public class Juego extends AppCompatActivity {
                     }
                     if(parejas==aleatorio/2){
                         Intent intent=new Intent(Juego.this,Resultados.class);
-                        intent.putExtra("player1","hola");
+                        intent.putExtra("player1",player1.getText().toString());
                         intent.putExtra("player2",player2.getText().toString());
                         intent.putExtra("puntaje1",puntaje1.getText().toString());
                         intent.putExtra("puntaje2",puntaje2.getText().toString());
                         intent.putExtra("nivel",nivel);
 
-                        //nombres y puntajes
+                        //colocar tiempo
 
                         startActivity(intent);
+                        finish();
                     }
                     ReiniciarImages(1);
                 }

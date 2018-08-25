@@ -1,9 +1,11 @@
 package com.example.bienestaraprendiz.emparejapp.Pantallas;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -39,6 +41,7 @@ public class Resultados extends AppCompatActivity {
         score2=findViewById(R.id.puntaje2);
         time1=findViewById(R.id.tiempo1);
         time2=findViewById(R.id.tiempo2);
+        volver=findViewById(R.id.volver);
 
         jugador1.setText(player1);
         jugador2.setText(player2);
@@ -51,6 +54,19 @@ public class Resultados extends AppCompatActivity {
         time2.setText(tiempo2);
         */
         VerificarBD();
+
+        volver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(Resultados.this,Opciones.class);
+                intent.putExtra("jugadoruno",player1);
+                intent.putExtra("jugadordos",player2);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
     }
     private void VerificarBD(){
         ArrayList<PuntajesVo> lista;
@@ -65,7 +81,7 @@ public class Resultados extends AppCompatActivity {
                     registro1.put("nombre",lista.get(j+((nivel-1)*5)).getNombre());
                     registro1.put("puntaje",lista.get(j+((nivel-1)*5)).getPuntaje());
                     crud.modificar(this,"tb_puntaje",registro1,String.valueOf(j+((nivel-1)*5)+2));
-                    Log.d("verificar",lista.get(j+((nivel-1)*5)).getPuntaje()+"              "+String.valueOf(j+((nivel-1)*5)+2));
+                   // Log.d("verificar",lista.get(j+((nivel-1)*5)).getPuntaje()+"              "+String.valueOf(j+((nivel-1)*5)+2));
                 }
 
                 registro.put("nombre",player3);
@@ -79,5 +95,6 @@ public class Resultados extends AppCompatActivity {
                 break;
             }
         }
+
     }
 }

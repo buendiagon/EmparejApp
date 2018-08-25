@@ -26,6 +26,7 @@ public class Crud extends SQLiteOpenHelper {
         ContentValues registro =new ContentValues();
         registro.put("nombre","nadie");
         registro.put("puntaje","0");
+        registro.put("tiempo","0");
         for (int i=0;i<30;i++){
             db.insert("tb_puntaje",null,registro);
         }
