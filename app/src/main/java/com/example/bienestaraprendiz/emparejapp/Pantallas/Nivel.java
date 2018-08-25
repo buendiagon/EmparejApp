@@ -32,6 +32,7 @@ public class Nivel extends AppCompatActivity {
                 intent.putExtra("player2",player2);
                 intent.putExtra("nivel",nivel);
                 startActivity(intent);
+                finish();
             }
         });
         medio.setOnClickListener(new View.OnClickListener() {
@@ -43,6 +44,7 @@ public class Nivel extends AppCompatActivity {
                 intent.putExtra("player2",player2);
                 intent.putExtra("nivel",nivel);
                 startActivity(intent);
+                finish();
 
             }
         });
@@ -55,6 +57,7 @@ public class Nivel extends AppCompatActivity {
                 intent.putExtra("player2",player2);
                 intent.putExtra("nivel",nivel);
                 startActivity(intent);
+                finish();
             }
         });
     }
