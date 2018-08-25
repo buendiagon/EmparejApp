@@ -1,5 +1,7 @@
 package com.example.bienestaraprendiz.emparejapp.Pantallas;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,7 +20,7 @@ public class Juego extends AppCompatActivity {
     ArrayList<ImageView> Ids;
     ArrayList<Integer> images;
     ArrayList<Integer> acomodar;
-    int nivel,ran=-1,aleatorio=0,click=0,anterior=0,anterior1=0;
+    int nivel,ran=-1,aleatorio=0,click=0,anterior=0,anterior1=0,nomRan=-1,parejas=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,16 +28,16 @@ public class Juego extends AppCompatActivity {
         Ids=new ArrayList<>();
         images=new ArrayList<>();
         acomodar=new ArrayList<>();
-        if(nivel==1) {
+        if(nivel==1 || nivel==4) {
             setContentView(R.layout.activity_juego);
         }
-        else if(nivel==2){
+        else if(nivel==2 || nivel==5){
             setContentView(R.layout.medio);
             Ids.add(imagen9=findViewById(R.id.imagen9));Ids.add(imagen10=findViewById(R.id.imagen10));Ids.add(imagen11=findViewById(R.id.imagen11));Ids.add(imagen12=findViewById(R.id.imagen12));
         }
-        else if(nivel==3) {
+        else if(nivel==3 || nivel==6) {
             setContentView(R.layout.dificil);
-            Ids.add(imagen9=findViewById(R.id.imagen9));Ids.add(imagen10=findViewById(R.id.imagen10));Ids.add(imagen11=findViewById(R.id.imagen11));Ids.add(imagen12=findViewById(R.id.imagen12));Ids.add(imagen5=findViewById(R.id.imagen13));Ids.add(imagen6=findViewById(R.id.imagen14));Ids.add(imagen7=findViewById(R.id.imagen15));Ids.add(imagen8=findViewById(R.id.imagen16));
+            Ids.add(imagen9=findViewById(R.id.imagen9));Ids.add(imagen10=findViewById(R.id.imagen10));Ids.add(imagen11=findViewById(R.id.imagen11));Ids.add(imagen12=findViewById(R.id.imagen12));Ids.add(imagen13=findViewById(R.id.imagen13));Ids.add(imagen14=findViewById(R.id.imagen14));Ids.add(imagen15=findViewById(R.id.imagen15));Ids.add(imagen16=findViewById(R.id.imagen16));
         }
         player1=findViewById(R.id.player1);
         player2=findViewById(R.id.player2);
@@ -57,6 +59,10 @@ public class Juego extends AppCompatActivity {
         images.add(R.drawable.imagen7);
         images.add(R.drawable.imagen8);
         images.add(R.drawable.imagen);
+
+        Random rnd=new Random();
+        nomRan=rnd.nextInt(2)+1;
+        nombres();
 
 
         ReiniciarImages(0);
@@ -86,13 +92,13 @@ public class Juego extends AppCompatActivity {
     private void IniciarImages(){
         Random rnd=new Random();
         int cartas=0;
-        if(nivel==1){
+        if(nivel==1 || nivel==4){
             cartas=4;
             aleatorio=8;
-        }else if(nivel==2){
+        }else if(nivel==2 || nivel==5){
             cartas=6;
             aleatorio=12;
-        }else if(nivel==3){
+        }else if(nivel==3 || nivel==6){
             cartas=8;
             aleatorio=16;
         }
@@ -116,6 +122,7 @@ public class Juego extends AppCompatActivity {
                     click++;
                     if(acomodar.get(i)==anterior1){
                         si=1;
+                        parejas++;
                         SegClick(si,view,anterior);
                         anterior1=acomodar.get(i);
                     }else {
@@ -139,10 +146,21 @@ public class Juego extends AppCompatActivity {
                         findViewById(view.getId()).setVisibility(view.INVISIBLE);
                         findViewById(imagenAnterior).setVisibility(view.INVISIBLE);
                     }
+                    else {
+                        if(nomRan==1)nomRan=2;
+                        else if(nomRan==2) nomRan=1;
+                        nombres();
+                    }
                     anterior=0;
                     anterior1=0;
                     for(int i=0;i<aleatorio;i++){
                         Ids.get(i).setEnabled(true);
+                    }
+                    if(parejas==aleatorio/2){
+                        Intent intent=new Intent(Juego.this,Resultados.class);
+
+
+                        startActivity(intent);
                     }
                     ReiniciarImages(1);
                 }
@@ -150,6 +168,20 @@ public class Juego extends AppCompatActivity {
             for(int i=0;i<aleatorio;i++){
                 Ids.get(i).setEnabled(false);
             }
+        }
+    }
+    private void nombres(){
+        if(nomRan==1){
+            player1.setTextColor(Color.parseColor("#000000"));
+            puntaje1.setTextColor(Color.parseColor("#000000"));
+            player2.setTextColor(Color.parseColor("#808080"));
+            puntaje2.setTextColor(Color.parseColor("#808080"));
+        }
+        else if(nomRan==2){
+            player2.setTextColor(Color.parseColor("#000000"));
+            puntaje2.setTextColor(Color.parseColor("#000000"));
+            player1.setTextColor(Color.parseColor("#808080"));
+            puntaje1.setTextColor(Color.parseColor("#808080"));
         }
     }
 }
