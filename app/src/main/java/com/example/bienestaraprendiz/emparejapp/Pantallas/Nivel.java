@@ -25,6 +25,7 @@ public class Nivel extends AppCompatActivity {
                 Intent intent=new Intent(Nivel.this,Juego.class);
                 intent.putExtra("nivel",nivel);
                 startActivity(intent);
+                finish();
             }
         });
         medio.setOnClickListener(new View.OnClickListener() {
@@ -34,6 +35,7 @@ public class Nivel extends AppCompatActivity {
                 Intent intent=new Intent(Nivel.this,Juego.class);
                 intent.putExtra("nivel",nivel);
                 startActivity(intent);
+                finish();
 
             }
         });
@@ -44,6 +46,7 @@ public class Nivel extends AppCompatActivity {
                 Intent intent=new Intent(Nivel.this,Juego.class);
                 intent.putExtra("nivel",nivel);
                 startActivity(intent);
+                finish();
             }
         });
     }

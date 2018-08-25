@@ -1,9 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context=".Pantallas.Configuracion">
 
-</android.support.constraint.ConstraintLayout>
+    <ImageView
+        android:id="@+id/reloj"
+        android:layout_width="wrap_content"
+        android:layout_height="166dp"
+        android:layout_margin="40px"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/reloj" />
+
+    <CheckBox
+        android:id="@+id/temporizador"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20px"
+        android:text="Temporizado"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/minutos"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10px"
+        android:ems="10"
+        android:hint="Minutos"
+        android:inputType="text"
+        android:visibility="invisible" />
+
+    <EditText
+        android:id="@+id/segundos"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10px"
+        android:ems="10"
+        android:hint="Segundos"
+        android:inputType="text"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/aplicar"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:background="#4256EA"
+        android:shadowRadius="10"
+        android:text="Aplicar"
+        android:visibility="invisible" />
+</LinearLayout>
