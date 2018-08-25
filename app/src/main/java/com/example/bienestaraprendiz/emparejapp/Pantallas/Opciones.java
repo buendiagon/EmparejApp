@@ -2,15 +2,21 @@ package com.example.bienestaraprendiz.emparejapp.Pantallas;
 
 import android.content.Intent;
 import android.graphics.Path;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Chronometer;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.bienestaraprendiz.emparejapp.R;
+import com.example.bienestaraprendiz.emparejapp.Tiempo.Tiempo;
 
 public class Opciones extends AppCompatActivity {
     Button jugar,puntajes,configurar;
+
 
 
     @Override
@@ -21,6 +27,9 @@ public class Opciones extends AppCompatActivity {
         jugar = findViewById(R.id.jugar);
         puntajes = findViewById(R.id.puntajes);
         configurar = findViewById(R.id.configurar);
+
+
+
 
         jugar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +51,10 @@ public class Opciones extends AppCompatActivity {
                 configuracion();
             }
         });
+
+
+
+
 
 
 
