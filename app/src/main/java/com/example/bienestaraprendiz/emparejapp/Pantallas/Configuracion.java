@@ -87,14 +87,14 @@ public class Configuracion extends AppCompatActivity {
         int sitiempo = Integer.valueOf(lista.get(0).getTiempo());
         Log.d("mirar", String.valueOf(sitiempo));
 
-        if (sitiempo == 1){
-//            temporizador.isChecked();
-            minutos.setVisibility(View.VISIBLE);
-            segundos.setVisibility(View.VISIBLE);
-            minutos.setText(minutoss);
-            segundos.setText(segundoss);
-
-        }
+//        if (sitiempo == 1){
+////            temporizador.isChecked();
+//            minutos.setVisibility(View.VISIBLE);
+//            segundos.setVisibility(View.VISIBLE);
+//            minutos.setText(minutoss);
+//            segundos.setText(segundoss);
+//
+//        }
 
     }
 }
