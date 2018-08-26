@@ -2,6 +2,7 @@ package com.example.bienestaraprendiz.emparejapp.Pantallas;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.bienestaraprendiz.emparejapp.BD.Crud;
 import com.example.bienestaraprendiz.emparejapp.Entidades.PuntajesVo;
@@ -66,23 +68,10 @@ public class Juego extends AppCompatActivity {
             int minutos,segundos;
             minutos=Integer.valueOf(lista.get(0).getNombre());
             segundos=Integer.valueOf(lista.get(0).getPuntaje());
-            tiempoclass.temporizador(minutos,segundos,mostrar);
+            temporizador(minutos,segundos,mostrar);
 
         }
-        if(mostrar.getText().toString().equals("00:00")){
 
-            Intent intent=new Intent(Juego.this,Resultados.class);
-            intent.putExtra("player1",player1.getText().toString());
-            intent.putExtra("player2",player2.getText().toString());
-            intent.putExtra("puntaje1",puntaje1.getText().toString());
-            intent.putExtra("puntaje2",puntaje2.getText().toString());
-            intent.putExtra("nivel",nivel);
-
-            //colocar tiempo
-
-            startActivity(intent);
-            finish();
-        }
 
 
         puntaje1.setText("0");
@@ -242,5 +231,36 @@ public class Juego extends AppCompatActivity {
             player1.setTextColor(Color.parseColor("#808080"));
             puntaje1.setTextColor(Color.parseColor("#808080"));
         }
+    }public void temporizador(int minutos, int segundos, final TextView mostrar){
+        int minu= (minutos*60)*1000;
+        int segu= segundos*1000;
+        long valor= minu + segu;
+        CountDownTimer temporizador = new CountDownTimer(valor,1000) {
+            @Override
+            public void onTick(long l) {
+                long tiempo = l / 1000;
+                int min = (int) (tiempo / 60);
+                long seg = tiempo % 60;
+                String minutos = String.format("%02d",min);
+                String segundos = String.format("%02d",seg);
+                mostrar.setText(""+minutos+ " : "+segundos);
+
+            }
+
+            @Override
+            public void onFinish() {
+                mostrar.setText("Paila!");
+                Intent intent=new Intent(Juego.this,Resultados.class);
+                intent.putExtra("player1",player1.getText().toString());
+                intent.putExtra("player2",player2.getText().toString());
+                intent.putExtra("puntaje1",puntaje1.getText().toString());
+                intent.putExtra("puntaje2",puntaje2.getText().toString());
+                intent.putExtra("nivel",nivel);
+                    //colocar tiempo
+                startActivity(intent);
+                finish();
+
+            }
+        }.start();
     }
 }

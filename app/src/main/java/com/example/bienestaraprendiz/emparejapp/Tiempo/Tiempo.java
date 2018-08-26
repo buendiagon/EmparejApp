@@ -35,27 +35,5 @@ public class Tiempo {
 
     }
 
-    public void temporizador(int minutos, int segundos, final TextView mostrar){
-        int minu= (minutos*60)*1000;
-        int segu= segundos*1000;
-        long valor= minu + segu;
-        CountDownTimer temporizador = new CountDownTimer(valor,1000) {
-            @Override
-            public void onTick(long l) {
-                long tiempo = l / 1000;
-                int min = (int) (tiempo / 60);
-                long seg = tiempo % 60;
-                String minutos = String.format("%02d",min);
-                String segundos = String.format("%02d",seg);
-                mostrar.setText(""+minutos+ " : "+segundos);
 
-            }
-
-            @Override
-            public void onFinish() {
-                mostrar.setText("Paila!");
-
-            }
-        }.start();
-    }
 }
