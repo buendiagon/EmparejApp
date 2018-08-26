@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.bienestaraprendiz.emparejapp.BD.Crud;
 import com.example.bienestaraprendiz.emparejapp.Entidades.PuntajesVo;
@@ -38,24 +39,23 @@ public class Configuracion extends AppCompatActivity {
         aplicar = findViewById(R.id.aplicar);
         final Crud crud = new Crud(this,"puntaje",null,1);
 
-        consultar();
+//        consultar();
 
         temporizador.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b == true){
-                    minutos.setVisibility(View.VISIBLE);
-                    segundos.setVisibility(View.VISIBLE);
-                    reloj.setVisibility(View.VISIBLE);
-                    aplicar.setVisibility(View.VISIBLE);
-                    getWindow().getDecorView().setBackgroundColor(Color.parseColor("#B5BDF7"));
-                    sitiempo = 1;
-                }else if (b == false){
-                    minutos.setVisibility(View.INVISIBLE);
-                    segundos.setVisibility(View.INVISIBLE);
-                    reloj.setVisibility(View.INVISIBLE);
-                    getWindow().getDecorView().setBackgroundColor(Color.WHITE);
+                if (b == false){
+                    minutos.setEnabled(false);
+                    segundos.setEnabled(false);
+                    aplicar.setEnabled(false);
+
                     sitiempo = 0;
+                }else if (b == true){
+
+                    minutos.setEnabled(true);
+                    segundos.setEnabled(true);
+                    aplicar.setEnabled(true);
+                    sitiempo = 1;
 
                 }
             }
@@ -66,14 +66,28 @@ public class Configuracion extends AppCompatActivity {
         aplicar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                comoloquierallamar.put("minutos",minutos.getText().toString());
-                comoloquierallamar.put("segundos",segundos.getText().toString());
-                comoloquierallamar.put("siTiempo",String.valueOf(sitiempo));
+                try {
+                    comoloquierallamar.put("minutos",minutos.getText().toString());
+                    comoloquierallamar.put("segundos",segundos.getText().toString());
+                    comoloquierallamar.put("siTiempo",String.valueOf(sitiempo));
 
-                Log.d("verificar",minutos.getText().toString()+"          "+segundos.getText().toString()+"            "+String.valueOf(sitiempo));
+                    if (minutos.getText().toString().trim().equals("") || segundos.getText().toString().trim().equals("")){
+                        Toast.makeText(getApplicationContext(),"Por favor ingrese un valor",Toast.LENGTH_SHORT).show();
+                    }else if (Integer.valueOf(minutos.getText().toString()) < 0 || Integer.valueOf(segundos.getText().toString())  >= 60 || Integer.valueOf(segundos.getText().toString()) < 0){
+                        Toast.makeText(getApplicationContext(),"Por favor ingrese un valor valido",Toast.LENGTH_SHORT).show();
+                    }else {
 
-                crud.modificar(Configuracion.this,"tb_tiempo",comoloquierallamar,"1");
-                finish();
+                        Log.d("verificar",minutos.getText().toString()+"          "+segundos.getText().toString()+"            "+String.valueOf(sitiempo));
+
+                        crud.modificar(Configuracion.this,"tb_tiempo",comoloquierallamar,"1");
+                        finish();
+                    }
+
+                }catch (Exception e){
+                    Toast.makeText(getApplicationContext(),"algo paso",Toast.LENGTH_SHORT).show();
+
+                }
+
             }
         });
     }
@@ -87,14 +101,7 @@ public class Configuracion extends AppCompatActivity {
         int sitiempo = Integer.valueOf(lista.get(0).getTiempo());
         Log.d("mirar", String.valueOf(sitiempo));
 
-//        if (sitiempo == 1){
-////            temporizador.isChecked();
-//            minutos.setVisibility(View.VISIBLE);
-//            segundos.setVisibility(View.VISIBLE);
-//            minutos.setText(minutoss);
-//            segundos.setText(segundoss);
-//
-//        }
+
 
     }
 }

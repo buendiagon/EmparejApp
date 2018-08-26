@@ -2,6 +2,7 @@ package com.example.bienestaraprendiz.emparejapp.Pantallas;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -178,17 +179,21 @@ public class Juego extends AppCompatActivity {
                         findViewById(imagenAnterior).setVisibility(view.INVISIBLE);
                         if(nomRan==1){
                             puntaje1.setText(String.valueOf(Integer.valueOf(puntaje1.getText().toString())+100));
+                            gano(true);
                         }
                         else puntaje2.setText(String.valueOf(Integer.valueOf(puntaje2.getText().toString())+100));
+                        gano(true);
                     }
                     else {
                         if(nomRan==1){
                             nomRan=2;
                             puntaje1.setText(String.valueOf(Integer.valueOf(puntaje1.getText().toString())-2));
+                            gano(false);
                         }
                         else if(nomRan==2){
                             nomRan=1;
                             puntaje2.setText(String.valueOf(Integer.valueOf(puntaje2.getText().toString())-2));
+                            gano(false);
                         }
                         nombres();
                     }
@@ -218,6 +223,18 @@ public class Juego extends AppCompatActivity {
             }
         }
     }
+
+    private void gano(Boolean estado) {
+        if (estado == true){
+            MediaPlayer ganar= MediaPlayer.create(Juego.this,R.raw.gano);
+            ganar.start();
+        }else if (estado == false){
+            MediaPlayer perder = MediaPlayer.create(Juego.this,R.raw.perder);
+            perder.start();
+        }
+
+    }
+
     private void nombres(){
         if(nomRan==1){
             player1.setTextColor(Color.parseColor("#000000"));
