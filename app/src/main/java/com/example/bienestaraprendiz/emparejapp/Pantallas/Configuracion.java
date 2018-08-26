@@ -13,7 +13,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.bienestaraprendiz.emparejapp.BD.Crud;
+import com.example.bienestaraprendiz.emparejapp.Entidades.PuntajesVo;
 import com.example.bienestaraprendiz.emparejapp.R;
+
+import java.util.ArrayList;
 
 public class Configuracion extends AppCompatActivity {
 
@@ -35,6 +38,8 @@ public class Configuracion extends AppCompatActivity {
         aplicar = findViewById(R.id.aplicar);
         final Crud crud = new Crud(this,"puntaje",null,1);
 
+        consultar();
+
         temporizador.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -49,7 +54,6 @@ public class Configuracion extends AppCompatActivity {
                     minutos.setVisibility(View.INVISIBLE);
                     segundos.setVisibility(View.INVISIBLE);
                     reloj.setVisibility(View.INVISIBLE);
-//                    aplicar.setVisibility(View.INVISIBLE);
                     getWindow().getDecorView().setBackgroundColor(Color.WHITE);
                     sitiempo = 0;
 
@@ -64,11 +68,33 @@ public class Configuracion extends AppCompatActivity {
             public void onClick(View view) {
                 comoloquierallamar.put("minutos",minutos.getText().toString());
                 comoloquierallamar.put("segundos",segundos.getText().toString());
-                comoloquierallamar.put("sitiempo",String.valueOf(sitiempo));
+                comoloquierallamar.put("siTiempo",String.valueOf(sitiempo));
+
                 Log.d("verificar",minutos.getText().toString()+"          "+segundos.getText().toString()+"            "+String.valueOf(sitiempo));
+
                 crud.modificar(Configuracion.this,"tb_tiempo",comoloquierallamar,"1");
                 finish();
             }
         });
+    }
+
+    private void consultar() {
+        ArrayList<PuntajesVo> lista = new ArrayList<>();
+        Crud traer = new Crud(this,"puntaje",null,1);
+        traer.consultar(this,"tb_tiempo",lista);
+        int minutoss = Integer.valueOf(lista.get(0).getNombre());
+        int segundoss = Integer.valueOf(lista.get(0).getPuntaje());
+        int sitiempo = Integer.valueOf(lista.get(0).getTiempo());
+        Log.d("mirar", String.valueOf(sitiempo));
+
+//        if (sitiempo == 1){
+////            temporizador.isChecked();
+//            minutos.setVisibility(View.VISIBLE);
+//            segundos.setVisibility(View.VISIBLE);
+//            minutos.setText(minutoss);
+//            segundos.setText(segundoss);
+//
+//        }
+
     }
 }
