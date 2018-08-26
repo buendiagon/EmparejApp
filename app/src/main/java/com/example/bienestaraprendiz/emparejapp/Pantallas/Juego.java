@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.example.bienestaraprendiz.emparejapp.BD.Crud;
 import com.example.bienestaraprendiz.emparejapp.Entidades.PuntajesVo;
 import com.example.bienestaraprendiz.emparejapp.R;
+import com.example.bienestaraprendiz.emparejapp.Tiempo.Tiempo;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -24,11 +25,13 @@ public class Juego extends AppCompatActivity {
     ArrayList<Integer> images;
     ArrayList<Integer> acomodar;
     ArrayList<PuntajesVo> lista;
+    TextView mostrar;
     int nivel,ran=-1,aleatorio=0,click=0,anterior=0,anterior1=0,nomRan=-1,parejas=0;
     String jugador1,jugador2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        lista=new ArrayList<>();
         Crud crud=new Crud(this,"puntaje",null,1);
         crud.consultar(this,"tb_tiempo",lista);
         nivel=getIntent().getIntExtra("nivel",0);
@@ -48,6 +51,7 @@ public class Juego extends AppCompatActivity {
             setContentView(R.layout.dificil);
             Ids.add(imagen9=findViewById(R.id.imagen9));Ids.add(imagen10=findViewById(R.id.imagen10));Ids.add(imagen11=findViewById(R.id.imagen11));Ids.add(imagen12=findViewById(R.id.imagen12));Ids.add(imagen13=findViewById(R.id.imagen13));Ids.add(imagen14=findViewById(R.id.imagen14));Ids.add(imagen15=findViewById(R.id.imagen15));Ids.add(imagen16=findViewById(R.id.imagen16));
         }
+        mostrar=findViewById(R.id.tempo);
         player1=findViewById(R.id.player1);
         player2=findViewById(R.id.player2);
         puntaje1=findViewById(R.id.puntaje1);
@@ -55,10 +59,29 @@ public class Juego extends AppCompatActivity {
         tiempo=findViewById(R.id.tempo);
         player1.setText(jugador1);
         player2.setText(jugador2);
+        Tiempo tiempoclass=new Tiempo();
         if(nivel<4){
             tiempo.setVisibility(View.INVISIBLE);
         }else {
-            lista.get(0).getNombre();
+            int minutos,segundos;
+            minutos=Integer.valueOf(lista.get(0).getNombre());
+            segundos=Integer.valueOf(lista.get(0).getPuntaje());
+            tiempoclass.temporizador(minutos,segundos,mostrar);
+
+        }
+        if(mostrar.getText().toString().equals("00:00")){
+
+            Intent intent=new Intent(Juego.this,Resultados.class);
+            intent.putExtra("player1",player1.getText().toString());
+            intent.putExtra("player2",player2.getText().toString());
+            intent.putExtra("puntaje1",puntaje1.getText().toString());
+            intent.putExtra("puntaje2",puntaje2.getText().toString());
+            intent.putExtra("nivel",nivel);
+
+            //colocar tiempo
+
+            startActivity(intent);
+            finish();
         }
 
 
