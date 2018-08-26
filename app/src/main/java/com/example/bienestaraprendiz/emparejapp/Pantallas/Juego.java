@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +31,10 @@ public class Juego extends AppCompatActivity {
     TextView mostrar;
     int nivel,ran=-1,aleatorio=0,click=0,anterior=0,anterior1=0,nomRan=-1,parejas=0;
     String jugador1,jugador2;
+    Chronometer time1,time2;
+    long detenerse1=0;
+    long detenerse2=0;
+    CountDownTimer temporizador;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,17 +58,17 @@ public class Juego extends AppCompatActivity {
             setContentView(R.layout.dificil);
             Ids.add(imagen9=findViewById(R.id.imagen9));Ids.add(imagen10=findViewById(R.id.imagen10));Ids.add(imagen11=findViewById(R.id.imagen11));Ids.add(imagen12=findViewById(R.id.imagen12));Ids.add(imagen13=findViewById(R.id.imagen13));Ids.add(imagen14=findViewById(R.id.imagen14));Ids.add(imagen15=findViewById(R.id.imagen15));Ids.add(imagen16=findViewById(R.id.imagen16));
         }
+        time1=findViewById(R.id.time);
+        time2=findViewById(R.id.time2);
         mostrar=findViewById(R.id.tempo);
         player1=findViewById(R.id.player1);
         player2=findViewById(R.id.player2);
         puntaje1=findViewById(R.id.puntaje1);
         puntaje2=findViewById(R.id.puntaje2);
-        tiempo=findViewById(R.id.tempo);
         player1.setText(jugador1);
         player2.setText(jugador2);
-        Tiempo tiempoclass=new Tiempo();
         if(nivel<4){
-            tiempo.setVisibility(View.INVISIBLE);
+            mostrar.setVisibility(View.INVISIBLE);
         }else {
             int minutos,segundos;
             minutos=Integer.valueOf(lista.get(0).getNombre());
@@ -204,7 +209,12 @@ public class Juego extends AppCompatActivity {
                         intent.putExtra("puntaje1",puntaje1.getText().toString());
                         intent.putExtra("puntaje2",puntaje2.getText().toString());
                         intent.putExtra("nivel",nivel);
-
+                        Tiempo tiempoclass=new Tiempo();
+                        tiempoclass.pausarchronometro(time1);
+                        tiempoclass.pausarchronometro(time2);
+                        intent.putExtra("time1",time1.getText().toString());
+                        intent.putExtra("time2",time2.getText().toString());
+                        if(nivel>3)temporizador.cancel();
                         //colocar tiempo
 
                         startActivity(intent);
@@ -218,24 +228,30 @@ public class Juego extends AppCompatActivity {
             }
         }
     }
+    Tiempo tiempoclass=new Tiempo();
     private void nombres(){
         if(nomRan==1){
+            detenerse2=tiempoclass.pausarchronometro(time2);
+            tiempoclass.iniciarcrhonometro(time1,detenerse1);
             player1.setTextColor(Color.parseColor("#000000"));
             puntaje1.setTextColor(Color.parseColor("#000000"));
             player2.setTextColor(Color.parseColor("#808080"));
             puntaje2.setTextColor(Color.parseColor("#808080"));
         }
         else if(nomRan==2){
+            detenerse1=tiempoclass.pausarchronometro(time1);
+            tiempoclass.iniciarcrhonometro(time2,detenerse2);
             player2.setTextColor(Color.parseColor("#000000"));
             puntaje2.setTextColor(Color.parseColor("#000000"));
             player1.setTextColor(Color.parseColor("#808080"));
             puntaje1.setTextColor(Color.parseColor("#808080"));
         }
-    }public void temporizador(int minutos, int segundos, final TextView mostrar){
+    }
+    public void temporizador(int minutos, int segundos, final TextView mostrar){
         int minu= (minutos*60)*1000;
         int segu= segundos*1000;
         long valor= minu + segu;
-        CountDownTimer temporizador = new CountDownTimer(valor,1000) {
+        temporizador = new CountDownTimer(valor,1000) {
             @Override
             public void onTick(long l) {
                 long tiempo = l / 1000;
@@ -255,12 +271,19 @@ public class Juego extends AppCompatActivity {
                 intent.putExtra("player2",player2.getText().toString());
                 intent.putExtra("puntaje1",puntaje1.getText().toString());
                 intent.putExtra("puntaje2",puntaje2.getText().toString());
+                Tiempo tiempoclass=new Tiempo();
+                tiempoclass.pausarchronometro(time1);
+                tiempoclass.pausarchronometro(time2);
+                intent.putExtra("time1",time1.getText().toString());
+                intent.putExtra("time2",time2.getText().toString());
+
                 intent.putExtra("nivel",nivel);
                     //colocar tiempo
                 startActivity(intent);
                 finish();
 
             }
-        }.start();
+        };
+        temporizador.start();
     }
 }
