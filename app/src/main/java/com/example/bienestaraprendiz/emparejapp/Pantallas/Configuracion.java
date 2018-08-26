@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -67,19 +68,33 @@ public class Configuracion extends AppCompatActivity {
             public void onClick(View view) {
                 comoloquierallamar.put("minutos",minutos.getText().toString());
                 comoloquierallamar.put("segundos",segundos.getText().toString());
-                comoloquierallamar.put("sitiempo",String.valueOf(sitiempo));
+                comoloquierallamar.put("siTiempo",String.valueOf(sitiempo));
+
+                Log.d("verificar",minutos.getText().toString()+"          "+segundos.getText().toString()+"            "+String.valueOf(sitiempo));
+
                 crud.modificar(Configuracion.this,"tb_tiempo",comoloquierallamar,"1");
+                finish();
             }
         });
     }
 
     private void consultar() {
-        ArrayList<PuntajesVo> traer = new ArrayList<>();
-        Crud consultar = new Crud(this,"puntaje",null,1);
-        consultar.consultar(this,"tb_tiempo",traer);
-        traer.get(0).getNombre();
-        traer.get(0).getPuntaje();
-        traer.get(0).get
+        ArrayList<PuntajesVo> lista = new ArrayList<>();
+        Crud traer = new Crud(this,"puntaje",null,1);
+        traer.consultar(this,"tb_tiempo",lista);
+        int minutoss = Integer.valueOf(lista.get(0).getNombre());
+        int segundoss = Integer.valueOf(lista.get(0).getPuntaje());
+        int sitiempo = Integer.valueOf(lista.get(0).getTiempo());
+        Log.d("mirar", String.valueOf(sitiempo));
+
+        if (sitiempo == 1){
+//            temporizador.isChecked();
+            minutos.setVisibility(View.VISIBLE);
+            segundos.setVisibility(View.VISIBLE);
+            minutos.setText(minutoss);
+            segundos.setText(segundoss);
+
+        }
 
     }
 }

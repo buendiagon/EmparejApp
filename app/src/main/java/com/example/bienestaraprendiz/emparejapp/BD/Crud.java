@@ -3,13 +3,10 @@ package com.example.bienestaraprendiz.emparejapp.BD;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.bienestaraprendiz.emparejapp.Entidades.PuntajesVo;
-
-import org.apache.http.conn.ConnectTimeoutException;
 
 import java.util.ArrayList;
 
@@ -26,6 +23,7 @@ public class Crud extends SQLiteOpenHelper {
         ContentValues registro =new ContentValues();
         registro.put("nombre","nadie");
         registro.put("puntaje","0");
+        registro.put("tiempo","0");
         for (int i=0;i<30;i++){
             db.insert("tb_puntaje",null,registro);
         }
@@ -57,7 +55,7 @@ public class Crud extends SQLiteOpenHelper {
         SQLiteDatabase db=crud.getWritableDatabase();
         Cursor cursor=db.rawQuery("select * from "+table,null);
         while (cursor.moveToNext()){
-            lista.add(new PuntajesVo(cursor.getString(1),cursor.getString(2)));
+            lista.add(new PuntajesVo(cursor.getString(1),cursor.getString(2),cursor.getString(3)));
         }
         cursor.close();
 
