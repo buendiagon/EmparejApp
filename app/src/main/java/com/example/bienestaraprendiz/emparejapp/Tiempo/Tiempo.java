@@ -10,7 +10,8 @@ public class Tiempo {
     long detenerse;
     Boolean running = false;
 
-    public  void iniciarcrhonometro(Chronometer chronometro){
+    public  void iniciarcrhonometro(Chronometer chronometro,long detenerse){
+        this.detenerse=detenerse;
 
         if (!running)
         chronometro.setBase(SystemClock.elapsedRealtime() - detenerse);
@@ -18,13 +19,14 @@ public class Tiempo {
         running = true;
     }
 
-    public void pausarchronometro(Chronometer chronometro){
+    public long pausarchronometro(Chronometer chronometro){
 
         if(running){
             chronometro.stop();
             detenerse = SystemClock.elapsedRealtime() - chronometro.getBase();
             running = false;
         }
+        return detenerse;
     }
 
     public void reiniciarchronometro(Chronometer chronometro){

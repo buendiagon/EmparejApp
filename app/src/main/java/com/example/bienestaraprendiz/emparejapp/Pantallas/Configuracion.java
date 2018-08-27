@@ -26,6 +26,8 @@ public class Configuracion extends AppCompatActivity {
     ImageView reloj;
     Button aplicar;
     int sitiempo = 0;
+    Boolean estado = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,9 @@ public class Configuracion extends AppCompatActivity {
         aplicar = findViewById(R.id.aplicar);
         final Crud crud = new Crud(this,"puntaje",null,1);
 
+
+
+
 //        consultar();
 
         temporizador.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -47,14 +52,21 @@ public class Configuracion extends AppCompatActivity {
                 if (b == false){
                     minutos.setEnabled(false);
                     segundos.setEnabled(false);
-                    aplicar.setEnabled(false);
+                    temporizador.setChecked(false);
+                    minutos.setText("");
+                    segundos.setText("");
+                    estado = false;
+
+
 
                     sitiempo = 0;
                 }else if (b == true){
 
                     minutos.setEnabled(true);
                     segundos.setEnabled(true);
-                    aplicar.setEnabled(true);
+                    temporizador.setChecked(true);
+                    estado = true;
+
                     sitiempo = 1;
 
                 }
@@ -67,24 +79,40 @@ public class Configuracion extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
-                    comoloquierallamar.put("minutos",minutos.getText().toString());
-                    comoloquierallamar.put("segundos",segundos.getText().toString());
-                    comoloquierallamar.put("siTiempo",String.valueOf(sitiempo));
 
-                    if (minutos.getText().toString().trim().equals("") || segundos.getText().toString().trim().equals("")){
-                        Toast.makeText(getApplicationContext(),"Por favor ingrese un valor",Toast.LENGTH_SHORT).show();
-                    }else if (Integer.valueOf(minutos.getText().toString()) < 0 || Integer.valueOf(segundos.getText().toString())  >= 60 || Integer.valueOf(segundos.getText().toString()) < 0){
-                        Toast.makeText(getApplicationContext(),"Por favor ingrese un valor valido",Toast.LENGTH_SHORT).show();
-                    }else {
-
-                        Log.d("verificar",minutos.getText().toString()+"          "+segundos.getText().toString()+"            "+String.valueOf(sitiempo));
-
+                    if (estado == false && minutos.getText().toString().trim().equals("") && segundos.getText().toString().trim().equals("")){
+//                        Toast.makeText(getApplicationContext(),"Por favor ingrese un valor",Toast.LENGTH_SHORT).show();
+                        minutos.setText("0");
+                        segundos.setText("0");
+                        sitiempo = 0;
+                        comoloquierallamar.put("minutos",minutos.getText().toString());
+                        comoloquierallamar.put("segundos",segundos.getText().toString());
+                        comoloquierallamar.put("siTiempo",String.valueOf(sitiempo));
                         crud.modificar(Configuracion.this,"tb_tiempo",comoloquierallamar,"1");
                         finish();
-                    }
+
+                    }else{
+
+                             if (estado == true && Integer.valueOf(minutos.getText().toString()) == 0 && Integer.valueOf(segundos.getText().toString())  >= 60 || Integer.valueOf(segundos.getText().toString()) == 0){
+                                 Toast.makeText(getApplicationContext(),"Por favor ingrese un valor valido",Toast.LENGTH_SHORT).show();
+                             }else{
+                                 comoloquierallamar.put("minutos",minutos.getText().toString());
+                                 comoloquierallamar.put("segundos",segundos.getText().toString());
+                                 comoloquierallamar.put("siTiempo",String.valueOf(sitiempo));
+                                 crud.modificar(Configuracion.this,"tb_tiempo",comoloquierallamar,"1");
+                                 finish();
+                             }
+
+                         }
+
+
+
+
+
+
 
                 }catch (Exception e){
-                    Toast.makeText(getApplicationContext(),"algo paso",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"No pueden haber campos vacios",Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -92,16 +120,16 @@ public class Configuracion extends AppCompatActivity {
         });
     }
 
-    private void consultar() {
-        ArrayList<PuntajesVo> lista = new ArrayList<>();
-        Crud traer = new Crud(this,"puntaje",null,1);
-        traer.consultar(this,"tb_tiempo",lista);
-        int minutoss = Integer.valueOf(lista.get(0).getNombre());
-        int segundoss = Integer.valueOf(lista.get(0).getPuntaje());
-        int sitiempo = Integer.valueOf(lista.get(0).getTiempo());
-        Log.d("mirar", String.valueOf(sitiempo));
-
-
-
-    }
+//    private void consultar() {
+//        ArrayList<PuntajesVo> lista = new ArrayList<>();
+//        Crud traer = new Crud(this,"puntaje",null,1);
+//        traer.consultar(this,"tb_tiempo",lista);
+//        int minutoss = Integer.valueOf(lista.get(0).getNombre());
+//        int segundoss = Integer.valueOf(lista.get(0).getPuntaje());
+//        int sitiempo = Integer.valueOf(lista.get(0).getTiempo());
+//        Log.d("mirar", String.valueOf(sitiempo));
+//
+//
+//
+//    }
 }

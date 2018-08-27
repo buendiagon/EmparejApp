@@ -50,7 +50,6 @@
         android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:background="#4256EA"
-        android:enabled="false"
         android:shadowRadius="10"
         android:text="Aplicar" />
 </LinearLayout>

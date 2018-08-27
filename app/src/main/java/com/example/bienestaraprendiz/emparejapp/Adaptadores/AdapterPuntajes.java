@@ -31,6 +31,7 @@ public class AdapterPuntajes extends RecyclerView.Adapter<AdapterPuntajes.listaV
     public void onBindViewHolder(@NonNull AdapterPuntajes.listaViewHolder listaViewHolder, int i) {
         listaViewHolder.player1.setText(lista.get(i).getPlayer1());listaViewHolder.player2.setText(lista.get(i).getPlayer2());listaViewHolder.player3.setText(lista.get(i).getPlayer3());listaViewHolder.player4.setText(lista.get(i).getPlayer4());listaViewHolder.player5.setText(lista.get(i).getPlayer5());
         listaViewHolder.puntaje1.setText(lista.get(i).getPuntaje1());listaViewHolder.puntaje2.setText(lista.get(i).getPuntaje2());listaViewHolder.puntaje3.setText(lista.get(i).getPuntaje3());listaViewHolder.puntaje4.setText(lista.get(i).getPuntaje4());listaViewHolder.puntaje5.setText(lista.get(i).getPuntaje5());
+        listaViewHolder.tiempo1.setText(lista.get(i).getTiempo1());listaViewHolder.tiempo2.setText(lista.get(i).getTiempo2());listaViewHolder.tiempo3.setText(lista.get(i).getTiempo3());listaViewHolder.tiempo4.setText(lista.get(i).getTiempo4());listaViewHolder.tiempo5.setText(lista.get(i).getTiempo5());
         if(i==0)listaViewHolder.titulo.setText("Fácil");
         else if(i==1)listaViewHolder.titulo.setText("Medio");
         else if(i==2)listaViewHolder.titulo.setText("Difícil");
@@ -50,6 +51,7 @@ public class AdapterPuntajes extends RecyclerView.Adapter<AdapterPuntajes.listaV
             super(itemView);
             player1=itemView.findViewById(R.id.jugador1);player2=itemView.findViewById(R.id.jugador2);player3=itemView.findViewById(R.id.jugador3);player4=itemView.findViewById(R.id.jugador4);player5=itemView.findViewById(R.id.jugador5);
             puntaje1=itemView.findViewById(R.id.score1);puntaje2=itemView.findViewById(R.id.score2);puntaje3=itemView.findViewById(R.id.score3);puntaje4=itemView.findViewById(R.id.score4);puntaje5=itemView.findViewById(R.id.score5);
+            tiempo1=itemView.findViewById(R.id.tiempo1);tiempo2=itemView.findViewById(R.id.tiempo2);tiempo3=itemView.findViewById(R.id.tiempo3);tiempo4=itemView.findViewById(R.id.tiempo4);tiempo5=itemView.findViewById(R.id.tiempo5);
             titulo=itemView.findViewById(R.id.titulo);
         }
     }
